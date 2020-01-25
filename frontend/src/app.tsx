@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu, Container, Dropdown } from "semantic-ui-react";
+import { Menu, Container, Dropdown, Icon } from "semantic-ui-react";
 import { Switch, Route, Link, useLocation } from "react-router-dom";
 import Home from "./pages/home";
 import SignUp from "./pages/sign-up";
@@ -26,23 +26,26 @@ const App: React.FC = () => {
           Sign-up
         </Menu.Item>
 
-        <Dropdown item simple text="Dropdown">
-          <Dropdown.Menu>
-            <Dropdown.Item>List Item</Dropdown.Item>
-            <Dropdown.Item>List Item</Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Header>Header Item</Dropdown.Header>
-            <Dropdown.Item>
-              <i className="dropdown icon" />
-              <span className="text">Submenu</span>
-              <Dropdown.Menu>
-                <Dropdown.Item>List Item</Dropdown.Item>
-                <Dropdown.Item>List Item</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown.Item>
-            <Dropdown.Item>List Item</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+        <Menu.Menu position="right">
+          <Dropdown
+            item
+            simple
+            trigger={
+              <span>
+                <Icon name="user circle" size="large" />
+                Dropdown
+              </span>
+            }
+          >
+            <Dropdown.Menu>
+              <Dropdown.Item>List Item</Dropdown.Item>
+              <Dropdown.Item>List Item</Dropdown.Item>
+              <Dropdown.Divider />
+              <Dropdown.Header>Header Item</Dropdown.Header>
+              <Dropdown.Item>List Item</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </Menu.Menu>
       </Menu>
       <Container style={{ marginTop: "7em" }}>
         <Switch>
