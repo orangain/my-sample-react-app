@@ -1,20 +1,12 @@
 import React from "react";
-import {
-  Menu,
-  Container,
-  Dropdown,
-  Form,
-  Checkbox,
-  Button,
-  Tab
-} from "semantic-ui-react";
+import { Menu, Container, Dropdown } from "semantic-ui-react";
+import { Switch, Route, Link, useLocation } from "react-router-dom";
+import Home from "./pages/home";
+import SignUp from "./pages/sign-up";
 
 const App: React.FC = () => {
-  const panes = [
-    { menuItem: "Tab 1" },
-    { menuItem: "Tab 2" },
-    { menuItem: "Tab 3" }
-  ];
+  const location = useLocation();
+  console.log(location);
 
   return (
     <div>
@@ -23,9 +15,18 @@ const App: React.FC = () => {
           {/* <Image size="mini" src="/logo.png" style={{ marginRight: "1.5em" }} /> */}
           Project Name
         </Menu.Item>
-        <Menu.Item as="a" active>
+        <Link
+          to="/"
+          className={`item ${location.pathname === "/" ? "active" : ""}`}
+        >
           Home
-        </Menu.Item>
+        </Link>
+        <Link
+          to="/sign-up"
+          className={`item ${location.pathname === "/sign-up" ? "active" : ""}`}
+        >
+          Sign-up
+        </Link>
 
         <Dropdown item simple text="Dropdown">
           <Dropdown.Menu>
@@ -46,41 +47,14 @@ const App: React.FC = () => {
         </Dropdown>
       </Menu>
       <Container style={{ marginTop: "7em" }}>
-        <Tab panes={panes} />
-
-        <Form style={{ width: "600px" }}>
-          <Form.Group inline>
-            <Form.Field width={3}>
-              <label htmlFor="firstName1">First Name</label>
-            </Form.Field>
-            <Form.Field width={13}>
-              <input id="firstName1" placeholder="First Name" />
-            </Form.Field>
-          </Form.Group>
-          <Form.Group inline>
-            <Form.Field width={3}>
-              <label htmlFor="lastName1">Last Name</label>
-            </Form.Field>
-            <Form.Field width={13}>
-              <input id="lastName1" placeholder="Last Name" />
-            </Form.Field>
-          </Form.Group>
-
-          <Form.Group inline>
-            <Form.Field width={3}></Form.Field>
-            <Form.Field width={13}>
-              <Checkbox label="I agree to the Terms and Conditions" />
-            </Form.Field>
-          </Form.Group>
-          <Form.Group inline>
-            <Form.Field width={3}></Form.Field>
-            <Form.Field width={13}>
-              <Button type="submit" primary>
-                Submit
-              </Button>
-            </Form.Field>
-          </Form.Group>
-        </Form>
+        <Switch>
+          <Route path="/sign-up">
+            <SignUp />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
       </Container>
     </div>
   );
