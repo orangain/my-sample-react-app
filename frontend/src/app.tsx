@@ -15,18 +15,16 @@ const App: React.FC = () => {
           {/* <Image size="mini" src="/logo.png" style={{ marginRight: "1.5em" }} /> */}
           Project Name
         </Menu.Item>
-        <Link
-          to="/"
-          className={`item ${location.pathname === "/" ? "active" : ""}`}
-        >
+        <Menu.Item as={Link} to="/" active={location.pathname === "/"}>
           Home
-        </Link>
-        <Link
+        </Menu.Item>
+        <Menu.Item
+          as={Link}
           to="/sign-up"
-          className={`item ${location.pathname === "/sign-up" ? "active" : ""}`}
+          active={location.pathname === "/sign-up"}
         >
           Sign-up
-        </Link>
+        </Menu.Item>
 
         <Dropdown item simple text="Dropdown">
           <Dropdown.Menu>
